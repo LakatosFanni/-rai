@@ -45,10 +45,10 @@ public class URLcím {
            
                throw new URLcímException(4, "nincs benne pont."); 
              else {
-                 String[] tmp2 = tmp1[1].split("\\."); // a pont egy spec karakter ezért kell a \\ mert a split egy reguláris kifejezést vár 
+                 String[] tmp2 = tmp1[1].split("\\.", -1); // a pont egy spec karakter ezért kell a \\ mert a split egy reguláris kifejezést vár 
                  for(String s: tmp2)
                  if(s.equals("")) 
-                     throw new URLcímException(4, "Két pont van egymás mellett.");
+                     throw new URLcímException(4, "Két pont van egymás mellett, vagy a végén van egy pont.");
             if(tmp2[tmp2.length-1].length()<2){
                 throw new URLcímException(4, "Utolsó pont utáni rész rövid "); //pl a .hu csak egy karakter, pl .h 
                 
