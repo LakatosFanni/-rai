@@ -20,5 +20,10 @@ public class URLcímException extends Exception {
     public int getHibakód() {
         return hibakód;
     }
+
+    @Override
+    public String toString() {
+        return "URLc\u00edmException{" + "hibak\u00f3d=" + hibakód + '}';
+    }
     
 }

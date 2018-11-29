@@ -53,6 +53,7 @@ public class URLcím {
                 throw new URLcímException(4, "Utolsó pont utáni rész rövid "); //pl a .hu csak egy karakter, pl .h 
                 
             }   
+            this.tartomány=tmp1[1];
              }
          } 
          else {
