@@ -3,91 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fénykép;
-
-import java.util.Scanner;
+package java10;
 
 /**
  *
  * @author hallgato
  */
 public class teszt {
-    private static Fényképezőgép fnyg[];
-    
-    private static int hegyekSzáma(Fényképezőgép fg){
-        String findString=" /\\";
-        int firstIndex=0;
-        String str = fg.getFénykép();
-        int count=0;
-   
-      while(firstIndex!=-1){
-          firstIndex=str.indexOf(findString, firstIndex);
-          if(firstIndex!=-1){
-              count++;
-              firstIndex=firstIndex+findString.length();
-          }
-      }
-        
-        return count;
-        
-    }
-    
-    
-    
-    private static void rendez(Fényképezőgép[] t) {
-        for (int i=0; i<t.length-1; i++){
-        for(int j=i+1; j<t.length; j++){
-         if(t[i].getFénykép().length() <t[j].getFénykép().length()){
-             Fényképezőgép tmp= t[i];
-             t[i]=t[j];
-             t[j]=tmp;
-      
-         }   
-         else if(t[i].getFénykép().length()==t[j].getFénykép().length()){
-             if(hegyekSzáma(t[i])== hegyekSzáma(t[j]))  {
-                 if(t[i].getMárkanév().compareTo(t[j].getMárkanév()) >0) {
-                 Fényképezőgép tmp= t[i];
-                 t[i]=t[j];
-                t[j]=tmp;
-             }
-         }
-             else if (hegyekSzáma(t[i])<hegyekSzáma(t[j])){
-             Fényképezőgép tmp= t[i];
-             t[i]=t[j];
-             t[j]=tmp;
-             }
-                 
-        }
-    }
-        
-        
-        
-    }
-            
-    private static void kiir(Fényképezőgép[] t){
-        for (int i=0; i<t.length;i++){
-            System.out.println(t[i]);
-        }
-    }
-    public static void main(String[] args) {
-        int n;
-        Scanner sc= new Scanner(System.in); //standard inp ról a scanner osztállyal olvasunk be 
-        
-        n=Integer.parseInt(sc.nextLine());
-        fnyg= new Fényképezőgép[n];
-       
-        for (int i=0; i<n; i++){
-             String sor = sc.nextLine();
-             String st[] = sor.split(":");
-             fnyg[i]=new Fényképezőgép(st[0], st[1]);
+  public static void main (String [] args){
+      int a=0;
+      int t[] = new int[] {1,2,3,4};
+      try{ //kivételkezeléshez kell, mögé kell a catch cucc 
+     for(int i=0; i<5; i++){ //ha i<5, akkor a tömböt túlindexeltük, kezelni kell 
+         a=3/t[i];
+     }
+     System.out.println("Try vége.");
              
-        }
-        
-        kiir(fnyg);
-        
-        
-        
-        
-    }
-    
+      } catch(ArithmeticException e){ //elkapja a try-ba talált kivételt, mindig az elsőt, ami dobódik
+          a=1;
+          //e.printStackTrace(); //segít, hogy hol dobódott ki a kivétel, hogy hol van a hiba a kódba 
+               
+      }
+      catch(ArrayIndexOutOfBoundsException e){ //lehet több catch ág, mert több kivétel is leht 
+          System.out.println("Túlindexelted a tömböt.");
+      } 
+      //ha már nincs több ötlet, hogy milyen kivétel jöhet, akkor: sima catch(exception e)
+      //mert az exception minden kivételnek az atyja, mniden kivételt magába foglal 
+      catch(Exception e){
+          
+      } finally { //opcionális ág, nem kötelező 
+          System.out.println("Ez mindenképp lefut, ha dobódik kivétel, ha nem");
+      }
+      
+      System.out.println("A program vége: " +a); 
+  
+  }         
 }
